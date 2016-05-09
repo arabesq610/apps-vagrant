@@ -4,11 +4,11 @@ apt-get -y update
 # Install nginx
 apt-get -y install nginx
 
-# Remove default nginx web root
-rm -rf /usr/share/nginx/www
+# Remove default nginx sites-enabled config
+rm -rf /etc/nginx/sites-enabled
 
-# Create symlink to shared loc
-ln -s /vagrant/src /usr/share/nginx/www
+# Recursively copy the shared config from our shared location to where nginx can use it
+cp -r /vagrant/sites-enabled /etc/nginx
 
 # Start nginx
 service nginx start
