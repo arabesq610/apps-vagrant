@@ -27,9 +27,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 8001, host: 9001
-  config.vm.network "forwarded_port", guest: 8002, host: 9002
-  config.vm.network "forwarded_port", guest: 8002, host: 9003
+  config.vm.network "forwarded_port", guest: 80, host: 8080, id: "nginx"
+
+  config.vm.network "forwarded_port", guest: 8001, host: 9001, id: "nginx_ops_portal"
+  config.vm.network "forwarded_port", guest: 8002, host: 9002, id: "nginx_client_portal"
+  config.vm.network "forwarded_port", guest: 8002, host: 9003, id: "nginx_fastlane" 
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
