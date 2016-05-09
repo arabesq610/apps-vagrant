@@ -1,11 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+VAGRANTFILE_API_VERSION = "2"
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-Vagrant.configure(2) do |config|
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -14,7 +16,10 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "hashicorp/precise64"
 
-  # Disable automatic box update checking. If you disable this, then
+  config.vm.hostname = "apps-vagrant"
+
+  config.vm.provision "shell", path: "provision.sh"
+# Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
